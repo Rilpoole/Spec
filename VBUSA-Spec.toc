@@ -1,2 +1,8 @@
-\contentsline {section}{\numberline {1}Executive Summary}{1}{}%
-\contentsline {section}{\numberline {2}Hardware}{1}{}%
+\contentsline {chapter}{\numberline {1}Objectives}{2}{}%
+\contentsline {chapter}{\numberline {2}Disaster Recovery}{3}{}%
+\contentsline {section}{\numberline {2.1}Failover}{3}{}%
+\contentsline {subsection}{\numberline {2.1.1}Backup Terminology Review}{3}{}%
+\contentsline {paragraph}{Image}{3}{}%
+\contentsline {paragraph}{Snapshot vs Incremental Snapshot}{4}{}%
+\contentsline {paragraph}{Restore Point and Shadowcopy}{4}{}%
+\contentsline {subsection}{\numberline {2.1.2}Backup Retention Policy}{4}{}%

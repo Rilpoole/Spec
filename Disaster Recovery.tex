@@ -1,6 +1,6 @@
-\section{Disaster Recovery}
+\chapter{Disaster Recovery}
 
-\subsection{Failover}
+\section{Failover}
 There are to be three servers: a production server, a backup server, and a failover server. The production server will be used for the everyday tasks and use of the system. On a regular and frequent basis the production server will back up a Zettabye Filesystem (ZFS) snapshot to the backup server. The backup server stores this snapshot in it's own ZFS system and relays it to cloud storage such as Azure S3 or equivilent offsite cloud storage. The failover server, at the same frequency, will load and run the most recent snapshot. In this configuration, one server is running, one server is ready for failover, and there are two locations of backups. At any one time there are four copies of the state of the system, two of which are ready for deployment, and one is already deployed. The frequency of the snapshots is discussed in subsection \ref{backupfreq}. 
 
 \subsection{Backup Terminology Review}
