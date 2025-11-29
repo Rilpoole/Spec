@@ -1,7 +1,15 @@
 \chapter{Disaster Recovery}
 
 \section{Failover}
-There are to be three servers: a production server, a backup server, and a failover server. The production server will be used for the everyday tasks and use of the system. On a regular and frequent basis the production server will back up a Zettabye Filesystem (ZFS) snapshot to the backup server. The backup server stores this snapshot in it's own ZFS system and relays it to cloud storage such as Azure S3 or equivilent offsite cloud storage. The failover server, at the same frequency, will load and run the most recent snapshot. In this configuration, one server is running, one server is ready for failover, and there are two locations of backups. At any one time there are four copies of the state of the system, two of which are ready for deployment, and one is already deployed. The frequency of the snapshots is discussed in subsection \ref{backupfreq}. 
+There are to be three servers: a production server, a backup server, and a failover server. The production server will be used for the everyday tasks and use of the system. On a regular and frequent basis the production server will back up a Zettabye Filesystem (ZFS) snapshot to the backup server. The backup server stores this snapshot in it's own ZFS system and relays it to cloud storage such as Azure S3 or equivilent offsite cloud storage. The failover server, at the same frequency, will load and run the most recent snapshot. In this configuration, one server is running, one server is ready for failover, and there are two locations of backups. At any one time there are four copies of the state of the system, two of which are ready for deployment, and one is already deployed. The frequency of the snapshots is discussed in subsection \ref{sec:backupfreq}. 
+
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.75\textwidth]{./img/failover.png}
+    \caption{Failover architecture}
+    \label{fig:failover}
+\end{figure}
+
 
 \subsection{Backup Terminology Review}
 Throughout this document the term \emph{backup} is meant to mean any saved data which can be used to independently restore itself. It is the most general and abstract idea of file redundancy. How a backup is made is significant to the risk profile. As such it is important to distinguish between the various types of backup. However, note that in the context of this document, a backup is mean to mean a saved state of the system. The consideration of individual files is not made. This is because the availability of the entire system is prioritized. That is the availability uptime of every file and service at once.
@@ -17,7 +25,7 @@ These are the Windows equivilents of incremental snapshots. Windows NTFS filesys
 
 
 \subsection{Backup Retention Policy}
-\label{backupfreq}
+\label{sec:backupfreq}
 An incremental snapshot will be made every hour on the production server and sent via SSH to the backup server. The backup server will then upon receipt send that copy via SSH to an Azure Ubuntu virutal machine which utilizes S3 storage. The backup server will send via SSH the new snapshot to the failover server. A backup will be made every hour, day, week, month, and year. In decreasing levels of risk profile. The retention policy shall be: 
 
 \begin{itemize}
